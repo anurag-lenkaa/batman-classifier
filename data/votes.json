@@ -1,0 +1,24 @@
+{
+  "actor_votes": {
+    "Michael Keaton": 0,
+    "Val Kilmer": 0,
+    "George Clooney": 0,
+    "Christian Bale": 0,
+    "Ben Affleck": 0,
+    "Robert Pattinson": 0
+  },
+  "film_votes": {
+    "Batman (1989)": 0,
+    "Batman Returns (1992)": 0,
+    "Batman Forever (1995)": 0,
+    "Batman & Robin (1997)": 0,
+    "Batman Begins (2005)": 0,
+    "The Dark Knight (2008)": 0,
+    "The Dark Knight Rises (2012)": 0,
+    "Batman v Superman: Dawn of Justice (2016)": 0,
+    "Justice League (2017)": 0,
+    "Zack Snyder's Justice League (2021)": 0,
+    "The Batman (2022)": 0
+  },
+  "total_votes": 0
+}
