@@ -10,6 +10,7 @@ A data-driven dashboard that scores every live-action Batman performance using o
 ---
 
 ## Live Demo
+https://batman-classifier-562aaautjbkjffw3eiyr4d.streamlit.app/
 
 > Deploy your own free instance → [share.streamlit.io](https://share.streamlit.io)
 
