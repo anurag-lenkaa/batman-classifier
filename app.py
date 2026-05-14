@@ -284,8 +284,8 @@ with tab1:
 
     styled = (
         display_df.style
-        .applymap(_color_score, subset=["IMDb", "RT Critics %", "RT Audience %",
-                                         "Metacritic", "Sentiment", "Composite ↑"])
+        .map(_color_score, subset=["IMDb", "RT Critics %", "RT Audience %",
+                                     "Metacritic", "Sentiment", "Composite ↑"])
         .format(
             {
                 "IMDb": "{:.1f}",
