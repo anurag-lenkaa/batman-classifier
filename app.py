@@ -135,9 +135,15 @@ PLOTLY_LAYOUT = dict(
     paper_bgcolor="#0a0a0f",
     plot_bgcolor="#0a0a0f",
     font=dict(color="#e8e8e8", family="Segoe UI"),
-    xaxis=dict(gridcolor="#1e1e2e", zerolinecolor="#1e1e2e"),
-    yaxis=dict(gridcolor="#1e1e2e", zerolinecolor="#1e1e2e"),
 )
+
+GRID = dict(gridcolor="#1e1e2e", zerolinecolor="#1e1e2e")
+
+
+def _apply_grid(fig):
+    fig.update_xaxes(**GRID)
+    fig.update_yaxes(**GRID)
+    return fig
 
 
 # ── Data loading (cached) ─────────────────────────────────────────────────────
@@ -331,7 +337,7 @@ with tab1:
                           legend=dict(bgcolor="#0a0a0f"),
                           xaxis_tickangle=-35)
         fig.update_traces(textfont_size=10)
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(_apply_grid(fig), use_container_width=True)
 
     with col_b:
         st.markdown("**Score breakdown — top film**")
@@ -359,7 +365,7 @@ with tab1:
             height=300,
             margin=dict(l=0, r=20, t=40, b=0),
         )
-        st.plotly_chart(fig2, use_container_width=True)
+        st.plotly_chart(_apply_grid(fig2), use_container_width=True)
 
         # Timeline scatter
         st.markdown("**Composite score timeline**")
@@ -375,7 +381,7 @@ with tab1:
         fig3.update_layout(**PLOTLY_LAYOUT, showlegend=False,
                            xaxis_title="", yaxis_title="Score",
                            height=250, margin=dict(l=0, r=0, t=0, b=0))
-        st.plotly_chart(fig3, use_container_width=True)
+        st.plotly_chart(_apply_grid(fig3), use_container_width=True)
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -430,10 +436,10 @@ with tab2:
             xaxis_range=[0, 105],
             xaxis_title="Score /100",
             yaxis_title="",
-            yaxis=dict(categoryorder="total ascending", gridcolor="#1e1e2e"),
+            yaxis_categoryorder="total ascending",
             height=350,
         )
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(_apply_grid(fig), use_container_width=True)
 
     with col2:
         # Radar chart — multi-dimension comparison
@@ -474,7 +480,7 @@ with tab2:
             title="Multi-Dimension Radar (avg per actor)",
             height=400,
         )
-        st.plotly_chart(fig_radar, use_container_width=True)
+        st.plotly_chart(_apply_grid(fig_radar), use_container_width=True)
 
     # Film-by-film grouped comparison
     st.markdown("### Film-by-Film Composite Score")
@@ -495,7 +501,7 @@ with tab2:
         showlegend=True,
         legend=dict(bgcolor="#0a0a0f"),
     )
-    st.plotly_chart(fig4, use_container_width=True)
+    st.plotly_chart(_apply_grid(fig4), use_container_width=True)
 
     # Box office vs score scatter
     st.markdown("### Box Office vs Composite Score")
@@ -515,7 +521,7 @@ with tab2:
             size_max=40,
         )
         fig5.update_layout(**PLOTLY_LAYOUT, legend=dict(bgcolor="#0a0a0f"))
-        st.plotly_chart(fig5, use_container_width=True)
+        st.plotly_chart(_apply_grid(fig5), use_container_width=True)
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -583,7 +589,7 @@ with tab3:
                 margin=dict(l=0, r=20, t=20, b=0),
             )
             fig_votes.update_traces(textposition="outside")
-            st.plotly_chart(fig_votes, use_container_width=True)
+            st.plotly_chart(_apply_grid(fig_votes), use_container_width=True)
         else:
             st.info("No actor votes yet — be the first!")
 
@@ -611,7 +617,7 @@ with tab3:
                 height=280,
                 margin=dict(l=0, r=0, t=20, b=0),
             )
-            st.plotly_chart(fig_fv, use_container_width=True)
+            st.plotly_chart(_apply_grid(fig_fv), use_container_width=True)
         else:
             st.info("No film votes yet!")
 
@@ -649,10 +655,10 @@ with tab3:
             **PLOTLY_LAYOUT,
             showlegend=False,
             xaxis_range=[0, 105],
-            yaxis=dict(categoryorder="total ascending", gridcolor="#1e1e2e"),
+            yaxis_categoryorder="total ascending",
             height=320,
         )
-        st.plotly_chart(fig_fan, use_container_width=True)
+        st.plotly_chart(_apply_grid(fig_fan), use_container_width=True)
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -684,7 +690,7 @@ with tab4:
         fig_sent.add_hline(y=0, line_dash="dash", line_color="#888",
                            annotation_text="Neutral", annotation_font_color="#888")
         fig_sent.update_layout(**PLOTLY_LAYOUT, showlegend=False, height=380)
-        st.plotly_chart(fig_sent, use_container_width=True)
+        st.plotly_chart(_apply_grid(fig_sent), use_container_width=True)
 
     with col_sb:
         # Label breakdown stacked bar
@@ -709,7 +715,7 @@ with tab4:
         )
         fig_labels.update_layout(**PLOTLY_LAYOUT, legend=dict(bgcolor="#0a0a0f"),
                                   height=380)
-        st.plotly_chart(fig_labels, use_container_width=True)
+        st.plotly_chart(_apply_grid(fig_labels), use_container_width=True)
 
     st.divider()
 
@@ -737,7 +743,7 @@ with tab4:
         showlegend=True,
         legend=dict(bgcolor="#0a0a0f"),
     )
-    st.plotly_chart(fig_heat, use_container_width=True)
+    st.plotly_chart(_apply_grid(fig_heat), use_container_width=True)
 
     st.divider()
 
