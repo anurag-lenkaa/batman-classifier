@@ -6,3 +6,4 @@ textblob>=0.18.0
 plotly>=5.18.0
 numpy>=1.26.0
 lxml>=5.1.0
+statsmodels>=0.14.0
